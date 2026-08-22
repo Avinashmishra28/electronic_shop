@@ -87,7 +87,7 @@ export default function Home() {
                 onClick={() => addToCart(product._id)}
                 className="bg-blue-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600 transition cursor-pointer "
               >
-                Add to cart
+                Add
               </button>
             </div>
           </div>
