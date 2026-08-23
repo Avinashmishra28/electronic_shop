@@ -17,14 +17,34 @@ export default function EditProduct() {
   const allowedFields = ["title", "price", "description", "category", "image", "stock"];
 
   const loadProduct = async () => {
+  try {
     const res = await api.get("/products");
-    const product = res.data.find((p) => p._id === id);
-    setForm(product);
-  };
 
-  useEffect(() => {
-    loadProduct();
-  }, []);
+    const product = res.data.find((p) => p._id === id);
+
+    if (!product) {
+      alert("Product not found");
+      navigate("/admin/products");
+      return;
+    }
+
+    setForm({
+      title: product.title || "",
+      price: product.price || "",
+      description: product.description || "",
+      category: product.category || "",
+      image: product.image || "",
+      stock: product.stock || "",
+    });
+
+  } catch (error) {
+    console.error("Error loading product:", error);
+  }
+};
+
+useEffect(() => {
+  loadProduct();
+}, [id]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -46,7 +66,7 @@ export default function EditProduct() {
           <input
             key={key}
             name={key}
-            value={form[key]}
+            value={form[key] || ""}
             onChange={handleChange}
             placeholder={key}
             className="w-full border px-3 py-2 rounded"

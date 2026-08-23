@@ -99,7 +99,7 @@ export default function Cart() {
               </div>
               <button
                 onClick={() => removeItem(item.productId._id)}
-                className="text-red-500"
+                className="text-red-500 cursor-pointer"
               >
                 Remove
               </button>

@@ -71,11 +71,12 @@ export default function Home() {
             className="border p-3 rounded shadow hover:shadow-lg transition"
           >
             <Link to={`/product/${product._id}`}>
-              <img
-                src={product.image}
-                alt={product.title}
-                className="w-full h-40 object-contain bg-white rounded"
-              />
+              {product.image && (
+            <img
+             src={product.image}
+            alt={product.title}
+          />
+)}
               <h2 className="mt-2 font-semibold text-lg">{product.title}</h2>
             </Link>
 

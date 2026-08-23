@@ -13,11 +13,13 @@ export default function Navbar() {
             if (!userId) return setCartCount(0);
 
             const res = await api.get(`/cart/${userId}`);
-            const total = res.data.items.reduce(
-                (sum, item) => sum + item.quantity, 0
-            );
+
+            const items = res.data?.items || [];
+             const total = items.reduce(
+             (sum, item) => sum + item.quantity, 0
+             );
             setCartCount(total);
-        }
+        };
         loadCart();
         window.addEventListener("cartUpdated", loadCart);
 
@@ -34,7 +36,7 @@ export default function Navbar() {
  
     return (
         <nav className="flex justify-between p-4 shadow bg-black text-white">
-            <Link to= "/" className="font-bold text-xl">avinash store</Link>
+            <Link to= "/" className="font-bold text-xl"> Electronic store</Link>
 
            <div className="flex gap-4 items-center">
             <Link to="/cart" className="relative text-xl">
@@ -55,7 +57,7 @@ export default function Navbar() {
                 <Link to="/signup" className="text-lg">Signup</Link>
                 </>
             ) : (
-                <button onClick={logout} className="text-lg">Logout</button>
+                <button onClick={logout} className="text-lg cursor-pointer">Logout</button>
             )
            }
 

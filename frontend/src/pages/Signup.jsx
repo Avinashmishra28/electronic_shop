@@ -22,7 +22,9 @@ export default function Signup() {
     e.preventDefault();
 
     try{
-      const response=await api.post("/auth/signup",form);
+      const response=await api.post("/auth/signup", form);
+        // console.log(response.data);
+      localStorage.setItem("userId", response.data.userId);
       setMsg(response.data.message);
       
       setTimeout(() => {
