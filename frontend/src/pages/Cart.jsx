@@ -59,11 +59,12 @@ export default function Cart() {
               className="flex items-center justify-between p-4 border rounded"
             >
               <div className="flex items-center gap-4">
-                <img
-                  src={item.productId.image}
-                  alt={item.productId.title}
-                  className="w-16 h-16 object-cover rounded"
-                />
+                {item.productId.image && (
+             <img
+               src={item.productId.image}
+              alt={item.productId.title}
+             />
+            )}
                 <div>
                   <h2 className="text-lg font-semibold">
                     {item.productId.title}
